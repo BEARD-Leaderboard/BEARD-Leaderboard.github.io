@@ -1,28 +1,17 @@
-# Website of RobustBench: a standardized adversarial robustness benchmark
+# Website of BEARD: Benchmarking the Adversarial Robustness for Dataset Distillation
 
-**Leaderboard website**: [https://robustbench.github.io/](https://robustbench.github.io/)
+**Leaderboard website**: [https://BEARD-Leaderboard.github.io/](https://BEARD-Leaderboard.github.io)
 
-**Model Zoo**: [https://github.com/RobustBench/robustbench](https://github.com/RobustBench/robustbench)
+<!-- **Model Zoo**: [https://github.com/RobustBench/robustbench](https://github.com/RobustBench/robustbench)
 
-**Paper:** [https://arxiv.org/abs/2010.09670](https://arxiv.org/abs/2010.09670)
+**Paper:** [https://arxiv.org/abs/2010.09670](https://arxiv.org/abs/2010.09670) -->
 
 
-## Main idea
+## Abstract
   
-The goal of **`RobustBench`** is to systematically track the *real* progress in adversarial robustness. 
-There are already [more than 3'000 papers](https://nicholas.carlini.com/writing/2019/all-adversarial-example-papers.html) 
-on this topic, but it is still unclear which approaches really work and which only lead to [overestimated robustness](https://arxiv.org/abs/1802.00420).
-We start from benchmarking the Linf, L2, and common corruption robustness since these are the most studied settings in the literature. 
+Dataset Distillation (DD) aims to compress large-scale datasets into significantly smaller counterparts while preserving strong training performance. Most current DD methods primarily focus on achieving high test performance with a limited data budget, but the adversarial robustness of models trained on distilled datasets has not been thoroughly investigated. This gap is primarily due to the lack of an open-source, unified benchmark for evaluating adversarial robustness in the context of DD and the absence of a metric for measuring the robustness of distilled datasets against multiple adversarial attacks. To address this gap, we introduce **BEARD**, an open and unified benchmark designed to systematically evaluate the adversarial robustness of existing DD methods, such as DM, IDM, and BACON. We apply various attacks (i.e., FGSM, PGD, and C&W) on DD methods generated from commonly used datasets like TinyImageNet and CIFAR-10/100. To thoroughly assess the adversarial robustness of DD methods, we propose the Robustness Score (RS) and Attack Efficiency Score (AES) as the primary evaluation metrics. Furthermore, we have developed an easy-to-use library for training and evaluating the adversarial robustness of different DD methods, and we have released a model pool and dataset pool to facilitate reproducible research.
 
-Evaluation of the robustness to Lp perturbations *in general* is not straightforward and requires adaptive attacks ([Tramer et al., (2020)](https://arxiv.org/abs/2002.08347)).
-Thus, in order to establish a reliable *standardized* benchmark, we need to impose some restrictions on the defenses we consider.
-In particular, **we accept only defenses that are (1) have in general non-zero gradients wrt the inputs, (2) have a fully deterministic forward pass (i.e. no randomness) that
-(3) does not have an optimization loop.** Often, defenses that violate these 3 principles only make gradient-based attacks 
-harder but do not substantially improve robustness ([Carlini et al., (2019)](https://arxiv.org/abs/1902.06705)) except those
-that can present concrete provable guarantees (e.g. [Cohen et al., (2019)](https://arxiv.org/abs/1902.02918)).
-
-To prevent potential overadaptation of new defenses to AutoAttack, we also welcome external evaluations based on **adaptive attacks**, especially where AutoAttack [flags](https://github.com/fra31/auto-attack/blob/master/flags_doc.md) a potential overestimation of robustness. For each model, we are interested in the best known robust accuracy and see AutoAttack and adaptive attacks as complementary to each other.
 
 
 ## Contributions
-Contributions both to the website and [model zoo](https://github.com/RobustBench/robustbench) are very welcome, as well as any suggestions for improving the project! We would be happy to hear any feedback on how to make it better and more comprehensive.
+Contributions both to the website and code are very welcome, as well as any suggestions for improving the project! We would be happy to hear any feedback on how to make it better and more comprehensive.

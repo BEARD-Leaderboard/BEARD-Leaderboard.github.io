@@ -56,7 +56,7 @@
               <a class="nav-link" href="#leaderboard">Leaderboards</a>
             </li>
             <li>
-              <a class="nav-link" href="https://arxiv.org/abs/2010.09670">Paper</a>
+              <a class="nav-link" href="https://arxiv.org/">Paper</a>
             </li>
             <li>
               <a class="nav-link" href="#faq"
@@ -67,11 +67,11 @@
               <a class="nav-link" href="#contribute">Contribute</a>
             </li>
             <li>
-              <a class="nav-link" href="https://github.com/RobustBench/robustbench">Dataset Pool</a>
+              <a class="nav-link" href="https://github.com/BEARD-Leaderboard/">Dataset Pool</a>
             </li>
             <li>
-              <a class="nav-link text-nowrap" href="https://github.com/RobustBench/robustbench"
-                >Model Pool 🚀</a 
+              <a class="nav-link text-nowrap" href="https://github.com/BEARD-Leaderboard/"
+                >Model Pool 🌟</a 
               >
             </li>
           </ul>
@@ -452,111 +452,37 @@ clean_acc, robust_acc = benchmark(model,
       </div>
 
       <p class="qa-box">
-        <span class="question">&#10148; How does the RobustBench leaderboard differ from the
-          <a href="https://github.com/fra31/auto-attack">AutoAttack leaderboard</a>? 🤔
+        <span class="question">&#10148; How does the BEARD leaderboard differ from the
+          <a href="https://dc-bench.github.io/">DC-Bench leaderboard</a>? 🤔
         </span>
         <br />
-        <span class="answer"> The <a href="https://github.com/fra31/auto-attack">AutoAttack leaderboard</a> was
-          the starting point of RobustBench. Now only the RobustBench leaderboard is actively maintained.
+        <span class="answer"> The <a href="https://dc-bench.github.io/">DC-Bench leaderboard</a> is
+          a leaderboard to evaluate the distillation performance of DD methods. BEARD aims to evaluate the adversarial robustness of DD methods.
         </span>
       </p>
 
       <p class="qa-box">
-        <span class="question">&#10148; How does the RobustBench leaderboard differ from
-          <a href="https://www.robust-ml.org/">robust-ml.org</a>? 🤔
+        <span class="question">&#10148; How does the BEARD leaderboard differ from
+          <a href="https://robustbench.github.io/">RobustBench</a>? 🤔
         </span>
         <br />
-        <span class="answer"><a href="https://www.robust-ml.org/">robust-ml.org</a> focuses on
-          <em>adaptive</em> evaluations, but we provide a
-          <strong>standardized benchmark</strong>. Adaptive evaluations have been very useful (e.g., see
-          <a href="https://arxiv.org/abs/2002.08347">Tramer et al., 2020</a>),
-          but they are also very time-consuming and cannot be standardized by definition. Instead, we argue
-          that one can estimate robustness accurately mostly <em>without</em> adaptive
-          attacks but for this one has to introduce some restrictions on the
-          considered models (see <a href="https://arxiv.org/abs/2010.09670">our paper</a> for more details).
-          However, we do welcome adaptive evaluations and we are always interested in showing the best known
-          robust accuracy.
+        <span class="answer"><a href="https://robustbench.github.io/">RobustBench</a> focuses on
+          adversarial robustness evaluations of general methods, but we provide the evaluation of adversarial robustness for DD methods.
         </span>
       </p>
 
-      <p class="qa-box">
-        <span class="question">&#10148; How is it related to libraries like
-          <a href="https://github.com/bethgelab/foolbox">foolbox</a> /
-          <a href="https://github.com/tensorflow/cleverhans">cleverhans</a> /
-          <a href="https://github.com/BorealisAI/advertorch">advertorch</a>? 🤔
-        </span>
-        <br />
-        <span class="answer">These libraries provide implementations of different
-          <em>attacks</em>. Besides the standardized benchmark,
-          <strong>RobustBench</strong> additionally provides a repository of the
-          most robust models. So you can start using the robust models in one
-          line of code (see the tutorial
-          <a href="https://github.com/RobustBench/robustbench#model-zoo-quick-tour">here</a>).</span>
-      </p>
-
-      <p class="qa-box">
-        <span class="question">&#10148; Why is Lp-robustness still interesting? 🤔
-        </span>
-        <br />
-        <span class="answer">There are numerous interesting applications of Lp-robustness that
-          span transfer learning (<a href="https://arxiv.org/abs/2007.08489">Salman et al. (2020)</a>,
-          <a href="https://arxiv.org/abs/2007.05869">Utrera et al. (2020)</a>),
-          interpretability (<a href="https://arxiv.org/abs/1805.12152">Tsipras et al. (2018)</a>, <a
-            href="https://arxiv.org/abs/1910.08640">Kaur et al. (2019)</a>,
-          <a href="https://arxiv.org/abs/1906.00945">Engstrom et al. (2019)</a>), security (<a
-            href="https://arxiv.org/abs/1811.03194">Tramèr et al. (2018)</a>,
-          <a href="https://arxiv.org/abs/1906.07153">Saadatpanah et al. (2019)</a>), generalization (<a
-            href="https://arxiv.org/abs/1911.09665">Xie et al. (2019)</a>, <a
-            href="https://arxiv.org/abs/1909.11764">Zhu et al. (2019)</a>,
-          <a href="https://arxiv.org/abs/2004.10934">Bochkovskiy et al. (2020)</a>), robustness to unseen perturbations
-          (<a href="https://arxiv.org/abs/1911.09665">Xie et al. (2019)</a>, <a
-            href="https://arxiv.org/abs/1905.01034">Kang et al. (2019)</a>),
-          stabilization of GAN training (<a href="https://arxiv.org/abs/2008.03364">Zhong et al. (2020)</a>).</span>
-      </p>
-
-      <p class="qa-box">
-        <span class="question">&#10148; What about verified adversarial robustness? 🤔
-        </span>
-        <br />
-        <span class="answer">We mostly focus on defenses which improve
-          <em>empirical</em> robustness, given the lack of clarity regarding
-          which approaches really improve robustness and which only make some
-          particular attacks unsuccessful.
-          However, we do not restrict submissions of verifiably robust models (e.g., we have
-          <a href="https://arxiv.org/abs/1906.06316">Zhang et al. (2019)</a> in our CIFAR-10 Linf leaderboard).
-          For methods targeting verified robustness, we encourage the readers to check out
-          <a href="https://arxiv.org/abs/1902.08722">Salman et al. (2019)</a>
-          and <a href="https://arxiv.org/abs/2009.04131">Li et al. (2020)</a>.
-        </span>
-      </p>
-
-      <p class="qa-box">
-        <span class="question">&#10148; What if I have a better attack than the one used in this
-          benchmark? 🤔
-        </span>
-        <br />
-        <span class="answer">We will be happy to add a better attack or any adaptive evaluation
-          that would complement our default standardized attacks!</span>
-      </p>
     </section>
 
 
 
     <div class="vspace50"></div>
 
-    <section id="citation">
+    <!-- <section id="citation">
       <div class="heading">
         <p>Citation</p>
       </div>
       Consider citing our whitepaper if you want to reference our leaderboard or if you are using the models from the
       Model Zoo:
-      <!--      @article{croce2020robustbench,-->
-      <!--        title={RobustBench: a standardized adversarial robustness benchmark},-->
-      <!--        author={Croce, Francesco and Andriushchenko, Maksym and Sehwag, Vikash and Flammarion, Nicolas and Chiang, Mung and Mittal, Prateek and Matthias Hein},-->
-      <!--        journal={arXiv preprint arXiv:2010.09670},-->
-      <!--        year={2020}-->
-      <!--      }-->
-      <!-- HTML generated using hilite.me -->
       <div
         style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.0em .0em .0em .0em;padding:.2em .6em;">
         <pre style="margin: 0; line-height: 125%"><span style="color: #555555; font-weight: bold">@article</span>{croce2020robustbench,
@@ -566,7 +492,7 @@ clean_acc, robust_acc = benchmark(model,
     journal<span style="color: #333333">=</span>{arXiv preprint arXiv:2010.09670},
     year<span style="color: #333333">=</span>{2020}
 }</pre>
-      </div>
+      </div> -->
 
     </section>
 
@@ -575,18 +501,16 @@ clean_acc, robust_acc = benchmark(model,
     <section id="contribute">
       <div class="details">
         <div class="box2">
-          <p>Contribute to RobustBench!</p>
+          <p>Contribute to BEARD!</p>
           <div class="divider">
             <hr />
           </div>
           We welcome any contribution in terms of both new robust models and
-          evaluations. Please check
-          <a href="https://github.com/RobustBench/robustbench#how-to-contribute">here</a>
-          for more details.
+          evaluations. 
           <br />
           <br />
-          Feel free to contact us at
-          <a href="mailto:adversarial.benchmark@gmail.com">adversarial.benchmark@gmail.com</a>
+          <!-- Feel free to contact us at
+          <a href="mailto:adversarial.benchmark@gmail.com">adversarial.benchmark@gmail.com</a> -->
         </div>
         <div class="box2">
           <p>Maintainers</p>
@@ -595,30 +519,13 @@ clean_acc, robust_acc = benchmark(model,
           </div>
           <ul>
             <li>
-              <a href="https://twitter.com/fra__31" target="_blank">Francesco Croce
+              <a href="https://twitter.com/" target="_blank">Anonymous
               </a>
-              <a href="https://twitter.com/fra__31"><i class="fas fa-globe"></i></a>
-              <a href="https://github.com/fra31"><i class="fab fa-github"></i></a>
-              <a href="https://scholar.google.com/citations?user=laq9cq0AAAAJ"><i class="ai ai-google-scholar"></i></a>
+              <a href="https://twitter.com/"><i class="fas fa-globe"></i></a>
+              <a href="https://github.com/"><i class="fab fa-github"></i></a>
+              <a href="https://scholar.google.com/"><i class="ai ai-google-scholar"></i></a>
             </li>
-            <li>
-              <a href="https://people.epfl.ch/maksym.andriushchenko" target="_blank">Maksym Andriushchenko</a>
-              <a href="https://people.epfl.ch/maksym.andriushchenko"><i class="fas fa-globe"></i></a>
-              <a href="https://github.com/max-andr"><i class="fab fa-github"></i></a>
-              <a href="https://scholar.google.com/citations?user=ZNtuJYoAAAAJ"><i class="ai ai-google-scholar"></i></a>
-            </li>
-            <li>
-              <a href="https://vsehwag.github.io/" target="_blank">Vikash Sehwag</a>
-              <a href="https://vsehwag.github.io/"><i class="fas fa-globe"></i></a>
-              <a href="https://github.com/VSehwag"><i class="fab fa-github"></i></a>
-              <a href="https://scholar.google.com/citations?user=JAkeEG8AAAAJ"><i class="ai ai-google-scholar"></i></a>
-            </li>
-            <li>
-              <a href="https://edoardo.science" target="_blank">Edoardo Debenedetti</a>
-              <a href="https://edoardo.science"><i class="fas fa-globe"></i></a>
-              <a href="https://github.com/dedeswim"><i class="fab fa-github"></i></a>
-              <a href="https://twitter.com/edoardo_debe"><i class="fab fa-twitter"></i></a>
-            </li>
+    
           </ul>
         </div>
       </div>
@@ -628,8 +535,7 @@ clean_acc, robust_acc = benchmark(model,
   <hr class="bottomrule" />
 
   <footer>
-    <small>&copy; 2021, RobustBench;
-      <a href="https://icons8.com/icon/100413/access">Icons from Icons8</a></small>
+    <small>&copy; 2024, BEARD: Benchmarking the Adversarial Robustness for Dataset Distillation
   </footer>
 
   <script>
