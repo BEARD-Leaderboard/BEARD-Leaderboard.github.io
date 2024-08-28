@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+
+<head>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-178132094-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag("js", new Date());
+
+    gtag("config", "UA-178132094-1");
+  </script>
+
+  <meta charset="UTF-8" />
+  <!--  <meta name="viewport" content="width=device-width, initial-scale=1" />-->
+  <meta name="viewport" content="width=1024" />
+  <title>BEARD: Benchmarking the Adversarial Robustness for Dataset Distillation</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script type="text/javascript" async
+    src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/css/foundation.min.css" />
+  <link rel="stylesheet" href="https://cdn.rawgit.com/jpswalsh/academicons/master/css/academicons.min.css" />
+  <script src="https://kit.fontawesome.com/b939870cfb.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.4.3/css/foundation.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/dataTables.foundation.min.css">
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+  <script type="text/javascript" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+  <script type="text/javascript" src="https://cdn.datatables.net/1.10.24/js/dataTables.foundation.min.js"></script>
+
+  <link rel="stylesheet" href="./css/main.css" />
+</head>
+
+
+<body>
+  <nav class="navbar navbar-expand-md">
+      <div class="container">
+        <a class="navbar-brand" href="./index.html"
+          >BEARD</a>
+        <button
+          class="navbar-toggler navbar-light"
+          type="button"
+          data-toggle="collapse"
+          data-target="#main-navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="main-navigation">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="#leaderboard">Leaderboards</a>
+            </li>
+            <li>
+              <a class="nav-link" href="https://arxiv.org/abs/2010.09670">Paper</a>
+            </li>
+            <li>
+              <a class="nav-link" href="#faq"
+                >FAQ</a
+              >
+            </li>
+            <li>
+              <a class="nav-link" href="#contribute">Contribute</a>
+            </li>
+            <li>
+              <a class="nav-link" href="https://github.com/RobustBench/robustbench">Dataset Pool</a>
+            </li>
+            <li>
+              <a class="nav-link text-nowrap" href="https://github.com/RobustBench/robustbench"
+                >Model Pool 🚀</a 
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+
+  <!-- <hr class="toprule" /> -->
+  <header>
+    <div class="header-block container">
+      <div class="logo"><img src="./images/logo2.png" alt="logo" /></div>
+      <div class="title">BEARD</div>
+      <div class="description">
+        <span class="highlight"> BE</span>nchmarking the <span class="highlight">A</span>dversarial <span class="highlight">R</span>obustness for <span class="highlight">D</span>ataset distillation
+      </div>
+    </div>
+  </header>
+  <!-- <hr class="toprule" /> -->
+
+  <div class="container">
+    <section id="introduction">
+      <div class="overview">
+        <p class="doublealign">
+          The goal of <span class="highlight"> BEARD</span> is to systematically explore
+          the <em>adversarial robustness</em> in Dataset Distillation (DD). A critical gap exists in the field, where the adversarial robustness of models trained on distilled datasets remains underexplored. Despite advancements in DD, deep neural networks continue to be vulnerable to adversarial attacks, posing significant security risks across various applications. Current research shows that while DD can partially improve adversarial robustness, it falls short of fully addressing these vulnerabilities. Additionally, the lack of a unified, open-source benchmark for evaluating adversarial robustness in DD has slowed progress in the field. <br><br>
+
+          In response, we introduce BEARD, an open benchmark designed to systematically evaluate the adversarial robustness of DD methods. BEARD provides a comprehensive framework for testing DD methods across various datasets using different adversarial attacks, introduces new evaluation metrics, and offers open-source tools to support ongoing research and development. 
+
+          <br><br>
+          <strong> TO DO List:</strong>
+          <ul>
+            <li>
+            <p><strong>Supplement More DD Methods:</strong> 
+              Our benchmark evaluates the following distillation methods: 
+              <a href="https://github.com/VICO-UoE/DatasetCondensation" class="completed" target="_blank"><span>DC</span></a>, 
+              <a href="https://github.com/VICO-UoE/DatasetCondensation" class="completed" target="_blank"><span>DSA</span></a>, 
+              <a href="https://github.com/VICO-UoE/DatasetCondensation" class="completed" target="_blank"><span>DM</span></a>, 
+              <a href="https://georgecazenavette.github.io/mtt-distillation/" class="completed" target="_blank"><span>MTT</span></a>, 
+              <a href="https://github.com/uitrbn/IDM" class="completed" target="_blank"><span>IDM</span></a>, 
+              <a href="https://github.com/zhouzhengqd/BACON" class="completed" target="_blank"><span>BACON</span></a>, 
+              <a href="https://github.com/justincui03/tesla" class="not-completed" target="_blank"><span>TESLA</span></a>, 
+              <a href="https://github.com/LINs-lab/RDED" class="not-completed" target="_blank"><span>RDED</span></a>, 
+              and <span class="not-completed">et cetera</span>. We will periodically update this list as new methods are developed and evaluated.
+            </p>
+            <p><span class="completed icon">&#10003; Completed methods</span><br>
+               <span class="not-completed icon">&#10007; Not yet completed methods</span></p>
+            <p>We will periodically update this list as new methods are developed and evaluated.</p>
+            </li>
+            <li><strong>Improve the Code</strong> 
+              We welcome contributions and participation from the community to help enhance our benchmark. If you have suggestions or want to contribute, please feel free to get involved and make a difference!
+          </li>
+          </ul>
+
+
+
+        </p>
+        <div class="flexbox-container features">
+          <div class="element">
+            <div class="icon">
+              <img src="https://img.icons8.com/wired/100/000000/leaderboard.png" />
+            </div>
+            <p>
+              Training phase with <br />
+              6+ distillation methods <br />
+              and 3+ datasets
+            </p>
+          </div>
+          <div class="element">
+            <div class="icon">
+              <img src="https://img.icons8.com/ios-glyphs/80/000000/user-credentials.png" />
+            </div>
+            <p>
+              Evaluation phase with<br />
+               5+ adversarial attacks <br />
+               to assess model robustness
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="details">
+        <div class="box usage">
+          <p>Training Configuration</p>
+          <div class="divider">
+            <hr />
+          </div>
+          Check out the
+          <a href="https://github.com/RobustBench/robustbench#model-zoo">available models</a> and <a href="https://github.com/RobustBench/robustbench#model-zoo">available datasets</a>. Below is the JSON file used for the training stage:
+          <div class="codeblock">
+            <div class="vspace10"></div>
+          
+            <!--
+# !pip install git+https://github.com/RobustBench/robustbench.git@v0.2.1
+from robustbench.utils import load_model
+# Load a model from the model zoo
+model = load_model(model_name='Rebuffi2021Fixing_70_16_cutmix_extra',
+                   dataset='cifar10',
+                   threat_model='Linf')
+
+# Evaluate the Linf robustness of the model using AutoAttack
+from robustbench.eval import benchmark
+clean_acc, robust_acc = benchmark(model,
+                                  dataset='cifar10',
+                                  threat_model='Linf')
+
+            -->
+            <!-- HTML generated using hilite.me -->
+            <div style="background: #ffffff; overflow: auto; width: auto; padding: .2em .6em;">
+              <pre style="margin: 0; line-height: 125%">
+                  <span style="color: #888888"># Configuration for model training</span>
+                  <span style="color: #008800; font-weight: bold">config</span> <span style="color: #333333">=</span> {
+                      <span style="color: #008800">"dataset"</span><span style="color: #333333">:</span> <span style="background-color: #fff0f0">"CIFAR10"</span>,
+                      <span style="color: #008800">"model"</span><span style="color: #333333">:</span> <span style="background-color: #fff0f0">"ConvNet"</span>,
+                      <span style="color: #008800">"method"</span><span style="color: #333333">:</span> <span style="background-color: #fff0f0">"XX"</span>,
+                      <span style="color: #008800">"ipc"</span><span style="color: #333333">:</span> <span style="background-color: #fff0f0">"50"</span>,
+                      <span style="color: #008800">"dsa_strategy"</span><span style="color: #333333">:</span> <span style="background-color: #fff0f0">"color_crop_cutout_flip_scale_rotate"</span>,
+                      <span style="color: #008800">"syn_ce"</span><span style="color: #333333">:</span> <span style="background-color: #fff0f0">true</span>,
+                      <span style="color: #008800">"ce_weight"</span><span style="color: #333333">:</span> <span style="background-color: #fff0f0">1</span>,
+                      <span style="color: #008800">"aug"</span><span style="color: #333333">:</span> <span style="background-color: #fff0f0">false</span>,
+                      <span style="color: #008800">"data_file"</span><span style="color: #333333">:</span> <span style="background-color: #fff0f0">"./data_pool/XX/XXX.pt"</span>,
+                      <span style="color: #008800">"save_path"</span><span style="color: #333333">:</span> <span style="background-color: #fff0f0">"./model_pool/XX/"</span>,
+                      <span style="color: #008800">"train_attack"</span><span style="color: #333333">:</span> <span style="background-color: #fff0f0">"PGD"</span>,
+                      <span style="color: #008800">"target_attack"</span><span style="color: #333333">:</span> <span style="background-color: #fff0f0">false</span>,
+                      <span style="color: #008800">"test_attack"</span><span style="color: #333333">:</span> <span style="background-color: #fff0f0">"None"</span>,
+                      <span style="color: #008800">"src_dataset"</span><span style="color: #333333">:</span> <span style="background-color: #fff0f0">false</span>
+                  }
+              </pre>
+          </div>
+
+
+            <!-- HTML generated using hilite.me -->
+            <div style="
+                background: #ffffff;
+                overflow: auto;
+                width: auto;
+                border: solid gray;
+                border-width: 0em 0em 0em 0em;
+                padding: 0.2em 0.6em;
+              ">
+
+              </pre>
+            </div>
+          </div>
+        </div>
+        <div class="box images">
+          <p>Evaluating Configuration</p>
+          <div class="divider">
+            <hr />
+          </div>
+          Check out the
+          <a href="#div_cifar10_unified_heading">evaluation results</a>. Below is the JSON file used for the evaluating stage:
+          <div class="codeblock">
+            <div class="vspace10"></div>
+          <div style="background: #ffffff; overflow: auto; width: auto; padding: .2em .6em;">
+            <pre style="margin: 0; line-height: 125%">
+                <span style="color: #888888"># Configuration for model evaluation</span>
+                <span style="color: #008800; font-weight: bold">config</span> <span style="color: #333333">=</span> {
+                    <span style="color: #008800">"dataset"</span><span style="color: #333333">:</span> <span style="background-color: #fff0f0">"CIFAR10"</span>,
+                    <span style="color: #008800">"model"</span><span style="color: #333333">:</span> <span style="background-color: #fff0f0">"ConvNet"</span>,
+                    <span style="color: #008800">"method"</span><span style="color: #333333">:</span> <span style="background-color: #fff0f0">"XX"</span>,
+                    <span style="color: #008800">"ipc"</span><span style="color: #333333">:</span> <span style="background-color: #fff0f0">"50"</span>,
+                    <span style="color: #008800">"dsa_strategy"</span><span style="color: #333333">:</span> <span style="background-color: #fff0f0">"color_crop_cutout_flip_scale_rotate"</span>,
+                    <span style="color: #008800">"syn_ce"</span><span style="color: #333333">:</span> <span style="background-color: #fff0f0">true</span>,
+                    <span style="color: #008800">"ce_weight"</span><span style="color: #333333">:</span> <span style="background-color: #fff0f0">1</span>,
+                    <span style="color: #008800">"aug"</span><span style="color: #333333">:</span> <span style="background-color: #fff0f0">false</span>,
+                    <span style="color: #008800">"load_file"</span><span style="color: #333333">:</span> <span style="background-color: #fff0f0">"。/model_pool/XX/XXX.pth"</span>,
+                    <span style="color: #008800">"save_path"</span><span style="color: #333333">:</span> <span style="background-color: #fff0f0">"。/model_pool/XX/"</span>,
+                    <span style="color: #008800">"train_attack"</span><span style="color: #333333">:</span> <span style="background-color: #fff0f0">"None"</span>,
+                    <span style="color: #008800">"test_attack"</span><span style="color: #333333">:</span> <span style="background-color: #fff0f0">["Clean", "FGSM", "PGD", XXX]</span>,
+                    <span style="color: #008800">"target_attack"</span><span style="color: #333333">:</span> <span style="background-color: #fff0f0">[true, false]</span>,
+                    <span style="color: #008800">"src_dataset"</span><span style="color: #333333">:</span> <span style="background-color: #fff0f0">true</span>,
+                    <span style="color: #008800">"pgd_eva"</span><span style="color: #333333">:</span> <span style="background-color: #fff0f0">false</span>
+                }
+            </pre>
+        </div>
+        </div>
+      </div>
+      <div class="vspace10"></div>
+    </section>
+
+
+    <div id="leaderboard" class="container button-list">
+      <div class="heading">
+        <u>
+          Available Leaderboards
+        </u>
+      </div>
+      <a class="btn btn-secondary" href="#div_cifar10_unified_heading">CIFAR-10 (Unified)</a>
+      <a class="btn btn-secondary" href="#div_cifar100_unified_heading">CIFAR-100 (Unified)</a>
+      <a class="btn btn-secondary" href="#div_tiny_unified_heading">TinyImageNet (Unified)</a>
+      <a class="btn btn-secondary" href="#div_cifar10_ipc1_heading">CIFAR-10 (IPC-1)</a>
+      <a class="btn btn-secondary" href="#div_cifar10_ipc10_heading">CIFAR-10 (IPC-10)</a>
+      <a class="btn btn-secondary" href="#div_cifar10_corruptions_heading">CIFAR-10 (IPC-50)</a>
+      <a class="btn btn-secondary" href="#div_cifar100_ipc1_heading">CIFAR-100 (IPC-1)</a>
+      <a class="btn btn-secondary" href="#div_cifar100_ipc10_heading">CIFAR-100 (IPC-10)</a>
+      <a class="btn btn-secondary" href="#div_cifar100_ipc50_heading">CIFAR-100 (IPC-50)</a>
+      <a class="btn btn-secondary" href="#div_tiny_ipc1_heading">TinyImageNet (IPC-1)</a>
+      <a class="btn btn-secondary" href="#div_tiny_ipc10_heading">TinyImageNet (IPC-10)</a>
+      <a class="btn btn-secondary" href="#div_tiny_ipc50_heading">TinyImageNet (IPC-50)</a>
+      <!-- <a class="btn btn-secondary" href="#div_imagenet_corruptions_heading">ImageNet (Corruptions: IN-C, IN-3DCC)</a> -->
+    </div>
+
+
+    <section class="container" id="div_cifar10_unified_heading">
+      <div class="heading">
+        <p>
+          <div style="opacity:0;">1<br>1<br>1<br>1</div>
+<!--          <div style="opacity:0;">1<br>1<br>1<br>1</div> &lt;!&ndash; Needed to introduce a margin for the navigation bar between leaderboards &ndash;&gt;-->
+          Leaderboard:
+          <span class="heading-math">CIFAR-10 (Unified)</span>,
+          untargeted attack
+        </p>
+      </div>
+
+      <div id="div_cifar10_Unified"></div>
+    </section>
+
+    <section class="container" id="div_cifar100_unified_heading">
+      <div class="heading">
+        <p>
+          <div style="opacity:0;">1<br>1<br>1<br>1</div>
+<!--          <div style="opacity:0;">1<br>1<br>1<br>1</div> &lt;!&ndash; Needed to introduce a margin for the navigation bar between leaderboards &ndash;&gt;-->
+          Leaderboard:
+          <span class="heading-math">CIFAR-100 (Unified)</span>,
+          untargeted attack
+        </p>
+      </div>
+
+      <div id="div_cifar100_Unified"></div>
+    </section>
+
+    <section class="container" id="div_tiny_unified_heading">
+      <div class="heading">
+        <p>
+          <div style="opacity:0;">1<br>1<br>1<br>1</div>
+<!--          <div style="opacity:0;">1<br>1<br>1<br>1</div> &lt;!&ndash; Needed to introduce a margin for the navigation bar between leaderboards &ndash;&gt;-->
+          Leaderboard:
+          <span class="heading-math">TinyImageNet (Unified)</span>,
+          untargeted attack
+        </p>
+      </div>
+
+      <div id="div_tiny_Unified"></div>
+    </section>
+
+    <section class="container" id="div_cifar10_ipc1_heading">
+      <div class="heading">
+        <p>
+          <div style="opacity:0;">1<br>1<br>1<br>1</div>
+<!--          <div style="opacity:0;">1<br>1<br>1<br>1</div> &lt;!&ndash; Needed to introduce a margin for the navigation bar between leaderboards &ndash;&gt;-->
+          Leaderboard:
+          <span class="heading-math">CIFAR-10 (IPC-1)</span>,
+          untargeted attack
+        </p>
+      </div>
+
+      <div id="div_cifar10_ipc1"></div>
+    </section>
+
+    <section class="container" id="div_cifar10_ipc10_heading">
+      <div class="heading">
+        <p>
+          <div style="opacity:0;">1<br>1<br>1<br>1</div>
+<!--          <div style="opacity:0;">1<br>1<br>1<br>1</div> &lt;!&ndash; Needed to introduce a margin for the navigation bar between leaderboards &ndash;&gt;-->
+          Leaderboard:
+          <span class="heading-math">CIFAR-10 (IPC-10)</span>,
+          untargeted attack
+        </p>
+      </div>
+
+      <div id="div_cifar10_ipc10"></div>
+    </section>
+
+    <section class="container" id="div_cifar10_ipc50_heading">
+      <div class="heading">
+        <p>
+          <div style="opacity:0;">1<br>1<br>1<br>1</div>
+<!--          <div style="opacity:0;">1<br>1<br>1<br>1</div> &lt;!&ndash; Needed to introduce a margin for the navigation bar between leaderboards &ndash;&gt;-->
+          Leaderboard:
+          <span class="heading-math">CIFAR-10 (IPC-50)</span>,
+          untargeted attack
+        </p>
+      </div>
+
+      <div id="div_cifar10_ipc50"></div>
+    </section>
+
+    <section class="container" id="div_cifar100_ipc1_heading">
+      <div class="heading">
+        <p>
+          <div style="opacity:0;">1<br>1<br>1<br>1</div>
+<!--          <div style="opacity:0;">1<br>1<br>1<br>1</div> &lt;!&ndash; Needed to introduce a margin for the navigation bar between leaderboards &ndash;&gt;-->
+          Leaderboard:
+          <span class="heading-math">CIFAR-100 (IPC-1)</span>,
+          untargeted attack
+        </p>
+      </div>
+
+      <div id="div_cifar100_ipc1"></div>
+    </section>
+
+    <section class="container" id="div_cifar100_ipc10_heading">
+      <div class="heading">
+        <p>
+          <div style="opacity:0;">1<br>1<br>1<br>1</div>
+<!--          <div style="opacity:0;">1<br>1<br>1<br>1</div> &lt;!&ndash; Needed to introduce a margin for the navigation bar between leaderboards &ndash;&gt;-->
+          Leaderboard:
+          <span class="heading-math">CIFAR-100 (IPC-10)</span>,
+          untargeted attack
+        </p>
+      </div>
+
+      <div id="div_cifar100_ipc10"></div>
+    </section>
+
+    <section class="container" id="div_cifar100_ipc50_heading">
+      <div class="heading">
+        <p>
+          <div style="opacity:0;">1<br>1<br>1<br>1</div>
+<!--          <div style="opacity:0;">1<br>1<br>1<br>1</div> &lt;!&ndash; Needed to introduce a margin for the navigation bar between leaderboards &ndash;&gt;-->
+          Leaderboard:
+          <span class="heading-math">CIFAR-100 (IPC-50)</span>,
+          untargeted attack
+        </p>
+      </div>
+
+      <div id="div_cifar100_ipc50"></div>
+    </section>
+
+    <section class="container" id="div_tiny_ipc1_heading">
+      <div class="heading">
+        <p>
+          <div style="opacity:0;">1<br>1<br>1<br>1</div>
+<!--          <div style="opacity:0;">1<br>1<br>1<br>1</div> &lt;!&ndash; Needed to introduce a margin for the navigation bar between leaderboards &ndash;&gt;-->
+          Leaderboard:
+          <span class="heading-math">TinyImageNet (IPC-1)</span>,
+          untargeted attack
+        </p>
+      </div>
+
+      <div id="div_tiny_ipc1"></div>
+    </section>
+
+    <section class="container" id="div_tiny_ipc10_heading">
+      <div class="heading">
+        <p>
+          <div style="opacity:0;">1<br>1<br>1<br>1</div>
+<!--          <div style="opacity:0;">1<br>1<br>1<br>1</div> &lt;!&ndash; Needed to introduce a margin for the navigation bar between leaderboards &ndash;&gt;-->
+          Leaderboard:
+          <span class="heading-math">TinyImageNet (IPC-10)</span>,
+          untargeted attack
+        </p>
+      </div>
+
+      <div id="div_tiny_ipc10"></div>
+    </section>
+
+    <section class="container" id="div_tiny_ipc50_heading">
+      <div class="heading">
+        <p>
+          <div style="opacity:0;">1<br>1<br>1<br>1</div>
+<!--          <div style="opacity:0;">1<br>1<br>1<br>1</div> &lt;!&ndash; Needed to introduce a margin for the navigation bar between leaderboards &ndash;&gt;-->
+          Leaderboard:
+          <span class="heading-math">TinyImageNet (IPC-50)</span>,
+          untargeted attack
+        </p>
+      </div>
+
+      <div id="div_tiny_ipc50"></div>
+    </section>
+
+
+    <div class="vspace30"></div>
+
+    <section id="faq">
+      <div class="heading">
+        <p>FAQ</p>
+      </div>
+
+      <p class="qa-box">
+        <span class="question">&#10148; How does the RobustBench leaderboard differ from the
+          <a href="https://github.com/fra31/auto-attack">AutoAttack leaderboard</a>? 🤔
+        </span>
+        <br />
+        <span class="answer"> The <a href="https://github.com/fra31/auto-attack">AutoAttack leaderboard</a> was
+          the starting point of RobustBench. Now only the RobustBench leaderboard is actively maintained.
+        </span>
+      </p>
+
+      <p class="qa-box">
+        <span class="question">&#10148; How does the RobustBench leaderboard differ from
+          <a href="https://www.robust-ml.org/">robust-ml.org</a>? 🤔
+        </span>
+        <br />
+        <span class="answer"><a href="https://www.robust-ml.org/">robust-ml.org</a> focuses on
+          <em>adaptive</em> evaluations, but we provide a
+          <strong>standardized benchmark</strong>. Adaptive evaluations have been very useful (e.g., see
+          <a href="https://arxiv.org/abs/2002.08347">Tramer et al., 2020</a>),
+          but they are also very time-consuming and cannot be standardized by definition. Instead, we argue
+          that one can estimate robustness accurately mostly <em>without</em> adaptive
+          attacks but for this one has to introduce some restrictions on the
+          considered models (see <a href="https://arxiv.org/abs/2010.09670">our paper</a> for more details).
+          However, we do welcome adaptive evaluations and we are always interested in showing the best known
+          robust accuracy.
+        </span>
+      </p>
+
+      <p class="qa-box">
+        <span class="question">&#10148; How is it related to libraries like
+          <a href="https://github.com/bethgelab/foolbox">foolbox</a> /
+          <a href="https://github.com/tensorflow/cleverhans">cleverhans</a> /
+          <a href="https://github.com/BorealisAI/advertorch">advertorch</a>? 🤔
+        </span>
+        <br />
+        <span class="answer">These libraries provide implementations of different
+          <em>attacks</em>. Besides the standardized benchmark,
+          <strong>RobustBench</strong> additionally provides a repository of the
+          most robust models. So you can start using the robust models in one
+          line of code (see the tutorial
+          <a href="https://github.com/RobustBench/robustbench#model-zoo-quick-tour">here</a>).</span>
+      </p>
+
+      <p class="qa-box">
+        <span class="question">&#10148; Why is Lp-robustness still interesting? 🤔
+        </span>
+        <br />
+        <span class="answer">There are numerous interesting applications of Lp-robustness that
+          span transfer learning (<a href="https://arxiv.org/abs/2007.08489">Salman et al. (2020)</a>,
+          <a href="https://arxiv.org/abs/2007.05869">Utrera et al. (2020)</a>),
+          interpretability (<a href="https://arxiv.org/abs/1805.12152">Tsipras et al. (2018)</a>, <a
+            href="https://arxiv.org/abs/1910.08640">Kaur et al. (2019)</a>,
+          <a href="https://arxiv.org/abs/1906.00945">Engstrom et al. (2019)</a>), security (<a
+            href="https://arxiv.org/abs/1811.03194">Tramèr et al. (2018)</a>,
+          <a href="https://arxiv.org/abs/1906.07153">Saadatpanah et al. (2019)</a>), generalization (<a
+            href="https://arxiv.org/abs/1911.09665">Xie et al. (2019)</a>, <a
+            href="https://arxiv.org/abs/1909.11764">Zhu et al. (2019)</a>,
+          <a href="https://arxiv.org/abs/2004.10934">Bochkovskiy et al. (2020)</a>), robustness to unseen perturbations
+          (<a href="https://arxiv.org/abs/1911.09665">Xie et al. (2019)</a>, <a
+            href="https://arxiv.org/abs/1905.01034">Kang et al. (2019)</a>),
+          stabilization of GAN training (<a href="https://arxiv.org/abs/2008.03364">Zhong et al. (2020)</a>).</span>
+      </p>
+
+      <p class="qa-box">
+        <span class="question">&#10148; What about verified adversarial robustness? 🤔
+        </span>
+        <br />
+        <span class="answer">We mostly focus on defenses which improve
+          <em>empirical</em> robustness, given the lack of clarity regarding
+          which approaches really improve robustness and which only make some
+          particular attacks unsuccessful.
+          However, we do not restrict submissions of verifiably robust models (e.g., we have
+          <a href="https://arxiv.org/abs/1906.06316">Zhang et al. (2019)</a> in our CIFAR-10 Linf leaderboard).
+          For methods targeting verified robustness, we encourage the readers to check out
+          <a href="https://arxiv.org/abs/1902.08722">Salman et al. (2019)</a>
+          and <a href="https://arxiv.org/abs/2009.04131">Li et al. (2020)</a>.
+        </span>
+      </p>
+
+      <p class="qa-box">
+        <span class="question">&#10148; What if I have a better attack than the one used in this
+          benchmark? 🤔
+        </span>
+        <br />
+        <span class="answer">We will be happy to add a better attack or any adaptive evaluation
+          that would complement our default standardized attacks!</span>
+      </p>
+    </section>
+
+
+
+    <div class="vspace50"></div>
+
+    <section id="citation">
+      <div class="heading">
+        <p>Citation</p>
+      </div>
+      Consider citing our whitepaper if you want to reference our leaderboard or if you are using the models from the
+      Model Zoo:
+      <!--      @article{croce2020robustbench,-->
+      <!--        title={RobustBench: a standardized adversarial robustness benchmark},-->
+      <!--        author={Croce, Francesco and Andriushchenko, Maksym and Sehwag, Vikash and Flammarion, Nicolas and Chiang, Mung and Mittal, Prateek and Matthias Hein},-->
+      <!--        journal={arXiv preprint arXiv:2010.09670},-->
+      <!--        year={2020}-->
+      <!--      }-->
+      <!-- HTML generated using hilite.me -->
+      <div
+        style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.0em .0em .0em .0em;padding:.2em .6em;">
+        <pre style="margin: 0; line-height: 125%"><span style="color: #555555; font-weight: bold">@article</span>{croce2020robustbench,
+    title<span style="color: #333333">=</span>{RobustBench: a standardized adversarial robustness benchmark},
+    author<span style="color: #333333">=</span>{Croce, Francesco <span style="color: #000000; font-weight: bold">and</span> Andriushchenko, Maksym <span style="color: #000000; font-weight: bold">and</span> Sehwag, Vikash <span style="color: #000000; font-weight: bold">and</span> Debenedetti, Edoardo <span style="color: #000000; font-weight: bold">and</span> Flammarion, Nicolas
+    <span style="color: #000000; font-weight: bold">and</span> Chiang, Mung <span style="color: #000000; font-weight: bold">and</span> Mittal, Prateek <span style="color: #000000; font-weight: bold">and</span> Matthias Hein},
+    journal<span style="color: #333333">=</span>{arXiv preprint arXiv:2010.09670},
+    year<span style="color: #333333">=</span>{2020}
+}</pre>
+      </div>
+
+    </section>
+
+    <div class="vspace50"></div>
+
+    <section id="contribute">
+      <div class="details">
+        <div class="box2">
+          <p>Contribute to RobustBench!</p>
+          <div class="divider">
+            <hr />
+          </div>
+          We welcome any contribution in terms of both new robust models and
+          evaluations. Please check
+          <a href="https://github.com/RobustBench/robustbench#how-to-contribute">here</a>
+          for more details.
+          <br />
+          <br />
+          Feel free to contact us at
+          <a href="mailto:adversarial.benchmark@gmail.com">adversarial.benchmark@gmail.com</a>
+        </div>
+        <div class="box2">
+          <p>Maintainers</p>
+          <div class="divider">
+            <hr />
+          </div>
+          <ul>
+            <li>
+              <a href="https://twitter.com/fra__31" target="_blank">Francesco Croce
+              </a>
+              <a href="https://twitter.com/fra__31"><i class="fas fa-globe"></i></a>
+              <a href="https://github.com/fra31"><i class="fab fa-github"></i></a>
+              <a href="https://scholar.google.com/citations?user=laq9cq0AAAAJ"><i class="ai ai-google-scholar"></i></a>
+            </li>
+            <li>
+              <a href="https://people.epfl.ch/maksym.andriushchenko" target="_blank">Maksym Andriushchenko</a>
+              <a href="https://people.epfl.ch/maksym.andriushchenko"><i class="fas fa-globe"></i></a>
+              <a href="https://github.com/max-andr"><i class="fab fa-github"></i></a>
+              <a href="https://scholar.google.com/citations?user=ZNtuJYoAAAAJ"><i class="ai ai-google-scholar"></i></a>
+            </li>
+            <li>
+              <a href="https://vsehwag.github.io/" target="_blank">Vikash Sehwag</a>
+              <a href="https://vsehwag.github.io/"><i class="fas fa-globe"></i></a>
+              <a href="https://github.com/VSehwag"><i class="fab fa-github"></i></a>
+              <a href="https://scholar.google.com/citations?user=JAkeEG8AAAAJ"><i class="ai ai-google-scholar"></i></a>
+            </li>
+            <li>
+              <a href="https://edoardo.science" target="_blank">Edoardo Debenedetti</a>
+              <a href="https://edoardo.science"><i class="fas fa-globe"></i></a>
+              <a href="https://github.com/dedeswim"><i class="fab fa-github"></i></a>
+              <a href="https://twitter.com/edoardo_debe"><i class="fab fa-twitter"></i></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <hr class="bottomrule" />
+
+  <footer>
+    <small>&copy; 2021, RobustBench;
+      <a href="https://icons8.com/icon/100413/access">Icons from Icons8</a></small>
+  </footer>
+
+  <script>
+    // When the user scrolls the page, execute myFunction
+    window.onscroll = function () {
+      myFunction();
+    };
+    // Get the navbar
+    var navbar = document.getElementById("navbar");
+    // Get the offset position of the navbar
+    var sticky = navbar.offsetTop;
+    // Add the sticky class to the navbar when you reach its scroll position. Remove "sticky" when you leave the scroll position
+    function myFunction() {
+      if (window.pageYOffset >= sticky) {
+        navbar.classList.add("sticky");
+      } else {
+        navbar.classList.remove("sticky");
+      }
+    }
+  </script>
+  <script>
+    $("#div_cifar10_Unified").load("./cifar10/Unified.html");
+    $("#div_cifar100_Unified").load("./cifar100/Unified.html");
+    $("#div_tiny_Unified").load("./tiny/Unified.html");
+    $("#div_cifar10_ipc1").load("./cifar10/ipc1.html");
+    $("#div_cifar10_ipc10").load("./cifar10/ipc10.html");
+    $("#div_cifar10_ipc50").load("./cifar10/ipc50.html");
+    $("#div_cifar100_ipc1").load("./cifar100/ipc1.html");
+    $("#div_cifar100_ipc10").load("./cifar100/ipc10.html");
+    $("#div_cifar100_ipc50").load("./cifar100/ipc50.html");
+    $("#div_tiny_ipc1").load("./tiny/ipc1.html");
+    $("#div_tiny_ipc10").load("./tiny/ipc10.html");
+    $("#div_tiny_ipc50").load("./tiny/ipc50.html");
+  </script>
+</body>
