@@ -490,3 +490,21 @@ footer {
   color: #F44336; /* 红色，用于表示未完成 */
   font-weight: bold;
 }
+.meta {
+  margin-top: 15px; /* 增加 CVPR 2025 和下方内容的间距 */
+  font-size: 1rem;
+  font-weight: bold;
+  text-align: center;
+}
+.authors, .affiliations {
+  text-align: center;
+  margin-top: 10px;
+}
+.authors a {
+  text-decoration: none;
+  color: #0071bc; /* CVPR 蓝色 */
+  font-weight: bold;
+}
+.authors a:hover {
+  text-decoration: underline;
+}
