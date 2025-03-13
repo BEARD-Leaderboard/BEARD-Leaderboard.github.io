@@ -13,4 +13,4 @@
 
 
 ## Contributions
-Contributions both to the website and code are very welcome, as well as any suggestions for improving the project! We would be happy to hear any feedback on how to make it better and more comprehensive.
+Contributions both to the [website](https://beard-leaderboard.github.io/) and [code](https://github.com/zhouzhengqd/BEARD) are very welcome, as well as any suggestions for improving the project! We would be happy to hear any feedback on how to make it better and more comprehensive. Feel free to reach out via email at zhengzhou@buaa.edu.cn or on GitHub: [zhouzhengqd](https://github.com/zhouzhengqd).
